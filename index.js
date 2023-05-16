@@ -6,15 +6,15 @@ console.log(buttons)
 
 for (i=0;i<buttons.length;i++){
     buttons[i].addEventListener("click",function(){
-        console.log(buttons[i].value)
+        console.log(this.value)
         console.log("click detected")
         if(screen.innerHTML==""){
             console.log("if")
-            // screen.innerHTML=buttons[i].value
+            screen.innerHTML=this.value
         }
         else{
             console.log("else")
-            // screen.innerHTML+=buttons[i].value
+            screen.innerHTML+=this.value
         }
     })
 }
