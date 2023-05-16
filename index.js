@@ -1,14 +1,20 @@
 const screen=document.getElementById("screen")
-const button=document.getElementById("buttonClass1")
+const buttons=document.querySelectorAll("input[class^=buttonClass]")
+
+console.log(buttons)
 
 
-button.addEventListener("click",function(){
-    console.log(screen.innerHTML)
-    if(screen.innerHTML==""){
-        console.log("if")
-        screen.innerHTML=button.value
-    }
-    else{
-        screen.innerHTML+=button.value
-    }
-})
+for (i=0;i<buttons.length;i++){
+    buttons[i].addEventListener("click",function(){
+        console.log(buttons[i].value)
+        console.log("click detected")
+        if(screen.innerHTML==""){
+            console.log("if")
+            // screen.innerHTML=buttons[i].value
+        }
+        else{
+            console.log("else")
+            // screen.innerHTML+=buttons[i].value
+        }
+    })
+}
