@@ -1,8 +1,10 @@
 const screen=document.getElementById("screen")
 const buttons=document.querySelectorAll("input[class=buttonClass]")
 const buttonEqual=document.querySelector(".buttonClassEqual")
+const buttonClear=document.querySelector(".buttonClassClear")
 let inputInt=[]
 let inputOperateur=[]
+
 
 for (i=0;i<buttons.length;i++){
     buttons[i].addEventListener("click",function(){
@@ -52,4 +54,8 @@ buttonEqual.addEventListener("click",function(){
     // console.log(result)
     screen.innerHTML=""
     screen.innerHTML=result
+})
+
+buttonClear.addEventListener("click",function(){
+    screen.innerHTML=""
 })
