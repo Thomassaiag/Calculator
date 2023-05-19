@@ -123,14 +123,18 @@ const resultDisplay =(tableOperateurs, tableInt)=>{
             case "+":
                 operationResult=parseFloat(tableInt[j])+parseFloat(tableInt[parseInt(j)+1])
                 tableInt.splice(parseInt(j),2,operationResult)
+                tableOperateurs.splice(parseInt(j),1)
                 console.log(tableInt)
                 console.log(tableOperateurs)
+                j=-1
                 break
             case "-":
                 operationResult=parseFloat(tableInt[j])-parseFloat(tableInt[parseInt(j)+1])
                 tableInt.splice(parseInt(j),2,operationResult)
+                tableOperateurs.splice(parseInt(j),1)
                 console.log(tableInt)
                 console.log(tableOperateurs)
+                j=-1
                 break    
         }
     }   
@@ -143,24 +147,33 @@ const resultDisplay =(tableOperateurs, tableInt)=>{
 
 const parenthisisPriorities=(tableOperateurs, tableInt)=>{
     while (tableOperateurs.includes("(")){
+        console.log(tableOperateurs)
+        console.log(tableInt)
         let indexOP=parseInt(tableOperateurs.indexOf("("))
         let indexCP=parseInt(tableOperateurs.indexOf(")"))
+        console.log(`indexOP=${indexOP}`)
+        console.log(`indexCP=${indexCP}`)
         let newTableOperateurs=tableOperateurs.slice(indexOP+1,indexCP)
         console.log(newTableOperateurs)
         let newTableInt=tableInt.slice(indexOP,indexCP)
         console.log(newTableInt)
-        resultDisplay(newTableOperateurs,newTableInt)
-        tableOperateurs.splice(indexOP,1)
-        tableOperateurs.splice(indexCP,1)
+        let parenthisisResult=resultDisplay(newTableOperateurs,newTableInt)
+        tableOperateurs.splice(indexOP,(indexCP-indexOP)+1)
+        tableInt.splice(indexOP,(indexCP-indexOP),parenthisisResult)
+        inputOperateur=tableOperateurs
+        inputInt=tableInt
+        console.log(inputOperateur)
+        console.log(inputInt)
     }
 
 }
 
-parenthisisPriorities(['(','+','-','*',')','+','*','-','(','*',')'],['1', '2', '3', '4', '2', '4', '3', '6'])
+// parenthisisPriorities(['(','+','-','*',')','+','*','-','(','*',')'],['1', '2', '3', '4', '2', '4', '3', '6'])
 
 
 const allFunctions=()=>{
     screen.innerHTML=""
+    parenthisisPriorities(inputOperateur,inputInt)
     screen.innerHTML=resultDisplay(inputOperateur,inputInt)
     
 
